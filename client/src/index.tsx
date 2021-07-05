@@ -5,7 +5,7 @@ import { Home } from "./Home";
 import { Pay } from "./Pay";
 import { Button, Card } from "ui-neumorphism";
 import firebase from "firebase";
-import { firebaseConfig } from "./firebaseConfig";
+import  firebaseConfig  from "./firebaseConfig.json";
 const app = firebase.initializeApp(firebaseConfig);
 import "ui-neumorphism/dist/index.css";
 const database = app.database();

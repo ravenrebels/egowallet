@@ -1,12 +1,35 @@
-Private wallet
-Requirements
- - Setup a Google Firebase account/project
- - Run a full node in server mode.
- - Node should NOT be exposed to internet
+# Private wallet for Ravencoin
+This is a graphical user interface facade on top of your own full blown Raven core node (Ravencoin wallet)
 
-Log in using Google
+## Requirements
+ - Setup a Google Firebase account/project. This will be used as middleware
+ - Run a full Ravencoin node in server mode.
+ - RVN Node should NOT be exposed to internet
 
-Auto create one or more addresses
+## Dev, getting started
+* git clone
+## Google Firebase config
+You must create your own Google Firebase project.
+In firebase console, copy the web app config.
+Create the file ./src/firebaseConfig.json and pase in the web app config.
+
+Should look something liks
+```
+{
+  apiKey: "AIasdfasdfuMYisRLJGUkxz4",
+  authDomain: "egoasdfasdff08.firebaseapp.com",
+  databaseURL: "https://egowalasdfasdfdefault-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "egowalleasdfasdf",
+  storageBucket: "egowalleasdf.appspot.com",
+  messagingSenderId: "27110asdf",
+  appId: "1:271asdf7:web:3asdf72a8e"
+```
+
+* npm install
+* npm start
+
+## Capabilities
+Log in using Google 
 
 Display balance
 
