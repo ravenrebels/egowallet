@@ -1,0 +1,65 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: #000;
+  background-image: linear-gradient(147deg, #ffff 0%, #eeee 74%);
+  font-family: "Quicksand", sans-serif;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+#app {
+  width: calc(98vw);
+  height: calc(90vh);
+  margin: auto;
+  margin-top: 4px;
+}
+@media only screen and (min-width: 600px) {
+  body {
+    width: 100%;
+  }
+  #app {
+    height: 600px;
+    max-width: calc(100vw);
+    width: 600px;
+
+    margin: auto;
+    margin-top: 30px;
+  }
+}
+
+.padding-default {
+  padding: 22px;
+}
+.nav {
+  list-style: none;
+  padding-top: 22px;
+}
+.nav li {
+  display: inline-block;
+  margin-left: 22px;
+}
+.balance {
+  margin-bottom: 44px;
+  font-size: 1.5rem;
+}
+
+.blink_me {
+  animation: blinker 3s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}

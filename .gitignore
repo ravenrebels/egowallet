@@ -1,3 +1,7 @@
+
+firebaseConfig.*
+firebaseServiceAccount.json
+
 # Logs
 logs
 *.log
