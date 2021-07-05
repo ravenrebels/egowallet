@@ -7,7 +7,9 @@ export function Home({ assets, balance, unconfirmedBalance }) {
   ];
 
   const items = assets;
-  const balanceFormatted = new Intl.NumberFormat('en-IN' ).format(parseFloat(balance))
+  const balanceFormatted = new Intl.NumberFormat("en-IN").format(
+    parseFloat(balance)
+  );
   return (
     <div className="home padding-default">
       <Card className="balance padding-default">
@@ -20,9 +22,8 @@ export function Home({ assets, balance, unconfirmedBalance }) {
           </p>
         )}
       </Card>
-      <Card className="asset__list padding-default">
-        <Table headers={headers} items={items} />
-      </Card>
+
+      <Table headers={headers} items={items} />
     </div>
   );
 }

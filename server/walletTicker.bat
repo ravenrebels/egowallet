@@ -1,1 +1,0 @@
-node c:/temp/ego/server/ticker

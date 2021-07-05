@@ -1,20 +1,13 @@
 const axios = require("axios");
-var admin = require("firebase-admin");
+const admin = require("firebase-admin");
+const ravenConfig = require("./ravenConfig.json"); 
 
-const CONFIG = {
-  rpcUsername: "rpcasdfUserasdfname",
-  rpcPassword: "rpcPassswasdford",
-  asset: "not applicable",
-};
-
-var admin = require("firebase-admin");
-
-var serviceAccount = require("./firebaseServiceAccount.json");
-var config = require("./config.json");
+const serviceAccount = require("./firebaseServiceAccount.json");
+const config = require("./firebaseConfig.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL:config.databaseURL,
+  databaseURL: config.databaseURL,
 });
 
 async function work() {
@@ -23,8 +16,7 @@ async function work() {
   //Set balance
   const balance = await rpc("getbalance", []);
   const balanceRef = db.ref("balance");
-  await balanceRef.set(balance); 
-
+  await balanceRef.set(balance);
 
   //Set unconfirmed balance
   const unconfirmedBalance = await rpc("getunconfirmedbalance", []);
@@ -52,13 +44,13 @@ async function rpc(method, params) {
   const promise = new Promise((resolutionFunc, rejectionFunc) => {
     const options = {
       auth: {
-        username: CONFIG.rpcUsername,
-        password: CONFIG.rpcPassword,
+        username: ravenConfig.rpcUsername,
+        password: ravenConfig.rpcPassword,
       },
     };
     const data = {
       jsonrpc: "1.0",
-      id: CONFIG.asset,
+      id: "n/a",
       method,
       params,
     };

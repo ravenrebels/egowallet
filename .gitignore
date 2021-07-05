@@ -1,7 +1,9 @@
 .parcel-cache
 firebaseConfig.*
 firebaseServiceAccount.json
-/server/config.json
+/server/firebaseConfig.json
+/server/ravenConfig.json
+/server/ticker.bat
 
 # Logs
 logs

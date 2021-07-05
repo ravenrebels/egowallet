@@ -48,7 +48,7 @@ function App() {
   };
 
   return (
-    <Card style={{height: "100%"}}>
+    <Card style={{height: "100%", "overflow": "scroll"}}>
       <ul className="nav">
         <li className="glass">
           <Button onClick={() => setRoute(Routes.OVERVIEW)}>
