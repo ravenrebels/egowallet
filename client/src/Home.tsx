@@ -11,8 +11,8 @@ export function Home({ assets, balance, unconfirmedBalance }) {
     parseFloat(balance)
   );
   return (
-    <div className="home padding-default">
-      <Card className="balance padding-default">
+    <div className="padding-default">
+      <Card className="raven-rebels-ego-wallet__balance padding-default">
         <h2>RVN</h2>
         {balanceFormatted}
         {unconfirmedBalance !== 0 && (

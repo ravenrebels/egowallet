@@ -17,7 +17,7 @@ body {
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
-
+/* mobile first */
 #app {
   width: calc(100vw - 32px);
   height: calc(100vh - 32px);
@@ -41,15 +41,15 @@ body {
 .padding-default {
   padding: 22px;
 }
-.nav {
+.raven-rebels-ego-wallet__nav {
   list-style: none;
   padding-top: 22px;
 }
-.nav li {
+.raven-rebels-ego-wallet__nav-item{
   display: inline-block;
   margin-left: 22px;
 }
-.balance {
+.raven-rebels-ego-wallet__balance{
   margin-bottom: 44px;
   font-size: 1.5rem;
 }

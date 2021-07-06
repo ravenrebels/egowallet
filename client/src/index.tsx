@@ -49,13 +49,13 @@ function App() {
 
   return (
     <Card style={{height: "100%", "overflow": "scroll"}}>
-      <ul className="nav">
-        <li className="glass">
+      <ul className="raven-rebels-ego-wallet__nav">
+        <li className="raven-rebels-ego-wallet__nav-item">
           <Button onClick={() => setRoute(Routes.OVERVIEW)}>
             Home
           </Button>
         </li>
-        <li className="glass">
+        <li className="raven-rebels-ego-wallet__nav-item">
           <Button onClick={() => setRoute(Routes.PAY)}>
             Pay
           </Button>
