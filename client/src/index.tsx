@@ -6,6 +6,7 @@ import { Pay } from "./Pay";
 import { Button, Card } from "ui-neumorphism";
 import firebase from "firebase";
 import  firebaseConfig  from "./firebaseConfig.json";
+ 
 const app = firebase.initializeApp(firebaseConfig);
 import "ui-neumorphism/dist/index.css";
 const database = app.database();
@@ -48,7 +49,7 @@ function App() {
   };
 
   return (
-    <Card style={{height: "100%", "overflow": "scroll"}}>
+    <Card >
       <ul className="raven-rebels-ego-wallet__nav">
         <li className="raven-rebels-ego-wallet__nav-item">
           <Button onClick={() => setRoute(Routes.OVERVIEW)}>

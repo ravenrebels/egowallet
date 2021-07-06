@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Table } from "ui-neumorphism";
+import { Card, ProgressCircular, Table } from "ui-neumorphism";
 export function Home({ assets, balance, unconfirmedBalance }) {
   const headers = [
     { text: "Asset name", align: "left", value: "name" },
@@ -15,11 +15,12 @@ export function Home({ assets, balance, unconfirmedBalance }) {
       <Card className="raven-rebels-ego-wallet__balance padding-default">
         <h2>RVN</h2>
         {balanceFormatted}
+
         {unconfirmedBalance !== 0 && (
-          <p className="blink_me">
-            <label>Incoming..</label>
-            <i>{unconfirmedBalance}</i>
-          </p>
+          <div className="padding-default">
+            <ProgressCircular indeterminate color="var(--primary)" />
+            Incoming: <i>{unconfirmedBalance} RVN</i>
+          </div>
         )}
       </Card>
 

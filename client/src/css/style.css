@@ -1,7 +1,7 @@
-html,
-body {
+html, body {
   margin: 0;
   padding: 0;
+  height: auto;
 }
 body {
   background-color: #000;
@@ -19,17 +19,17 @@ body {
 }
 /* mobile first */
 #app {
-  width: calc(100vw - 32px);
-  height: calc(100vh - 32px);
+  width: calc(100vw - 32px); 
   margin: auto;
   margin-top: 16px;
 }
 @media only screen and (min-width: 600px) {
   body {
     width: 100%;
+    min-height: calc(100vh);
   }
   #app {
-    height: 600px;
+   
     max-width: calc(100vw);
     width: 600px;
 

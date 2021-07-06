@@ -1,7 +1,9 @@
 import React from "react";
-import { Card } from "ui-neumorphism";
+import { Button, Card } from "ui-neumorphism";
+import { TextField } from "ui-neumorphism";
+
 export function Pay({ balance, database }) {
-  const [to, setTo] = React.useState("");
+  const [to, setTo] = React.useState("to default value");
   const [amount, setAmount] = React.useState("0");
 
   const submit = (event) => {
@@ -21,49 +23,35 @@ export function Pay({ balance, database }) {
     return false;
   };
   return (
-    <div className="pay padding-default">
+    <div className="raven-rebels-ego-wallet__pay padding-default">
       <Card className="padding-default">
         <h1>Pay Transfer</h1>
         <form>
           <div>
             <label>Available balance: {balance} </label>
             <br />
-            <label for="to" className="form-label">
+            <label>
               To
-              <input
-                autoComplete="off"
-                autoCorrect="off"
-                autoCapitalize="off"
-                spellCheck="false"
-                className="form-control"
-                id="to"
-                type="text"
-                name="to"
-                value={to}
+              <TextField
                 onChange={(event) => {
-                  setTo(event.target.value);
+                  setTo(event.value);
                 }}
-              ></input>
+              ></TextField>
             </label>
           </div>
           <div>
-            <label for="amount" className="form-label">
+            <label>
               Amount
-              <input
-                className="form-control"
-                id="amount"
-                name="amount"
-                type="text"
-                value={amount}
+              <TextField
                 onChange={(event) => {
-                  setAmount(event.target.value);
+                  setAmount(event.value);
                 }}
-              ></input>
+              ></TextField>
             </label>
           </div>
-          <button className="btn btn-dark" onClick={submit}>
+          <Button onClick={null}>
             Submit
-          </button>
+          </Button>
         </form>
       </Card>
     </div>
