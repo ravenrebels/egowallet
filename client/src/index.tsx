@@ -75,7 +75,7 @@ function useUser() {
   }, []);
   return user;
 }
-function App({user}) {
+function App({ user, logOut }) {
   const [route, setRoute] = React.useState(Routes.OVERVIEW);
 
   const [assets, setAssets] = React.useState([]);
@@ -121,6 +121,9 @@ function App({user}) {
         </li>
         <li className="raven-rebels-ego-wallet__nav-item">
           <Button onClick={() => setRoute(Routes.PAY)}>Pay</Button>
+        </li>
+        <li className="raven-rebels-ego-wallet__nav-item">
+          <Button onClick={logOut}>Sign out</Button>
         </li>
       </ul>
       {route === Routes.OVERVIEW && (

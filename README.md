@@ -13,7 +13,16 @@ You must create your own Google Firebase project.
 Configure your Firebase project to use Authentication > Google
 In firebase console, copy the web app config.
 Create the file ./src/firebaseConfig.json and past in the web app config.
-
+Log in once with your private Google Account (to see your user.uid)
+Realtime Database: read/write rules, 
+```
+{
+  "rules": {
+    ".read": "auth.uid === 'ro123_YOUR_USER_UID_123123zyUfADJA2'",
+    ".write": "auth.uid === 'ro123_YOUR_USER_UID_123123zyUfADJA2'"
+  }
+}
+```
 Should look something liks
 ```
 {
