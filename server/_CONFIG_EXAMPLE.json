@@ -1,0 +1,7 @@
+{
+  "databaseURL": "the URL to our firebase database",
+  "firebaseServiceAccountFilePath": "./firebaseServiceAccount.json",
+  "rpcUsername": "",
+  "rpcPassword": "",
+  "rpcURL": "http://127.0.0.1:8766"
+}

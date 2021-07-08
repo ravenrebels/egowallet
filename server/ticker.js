@@ -1,13 +1,14 @@
 const axios = require("axios");
 const admin = require("firebase-admin");
-const ravenConfig = require("./ravenConfig.json"); 
 
-const serviceAccount = require("./firebaseServiceAccount.json");
-const config = require("./firebaseConfig.json");
+const CONFIG = require("./_CONFIG.json");
+const serviceAccount = require(CONFIG.firebaseServiceAccountFilePath);
+
+
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: config.databaseURL,
+  databaseURL: CONFIG.databaseURL,
 });
 
 async function work() {
@@ -16,6 +17,7 @@ async function work() {
   //Set balance
   const balance = await rpc("getbalance", []);
   const balanceRef = db.ref("balance");
+  console.log("BALANCE", balance);
   await balanceRef.set(balance);
 
   //Set unconfirmed balance
@@ -44,8 +46,8 @@ async function rpc(method, params) {
   const promise = new Promise((resolutionFunc, rejectionFunc) => {
     const options = {
       auth: {
-        username: ravenConfig.rpcUsername,
-        password: ravenConfig.rpcPassword,
+        username: CONFIG.rpcUsername,
+        password: CONFIG.rpcPassword,
       },
     };
     const data = {
@@ -56,7 +58,7 @@ async function rpc(method, params) {
     };
 
     try {
-      const rpcResponse = axios.post("http://127.0.0.1:8766", data, options);
+      const rpcResponse = axios.post(CONFIG.rpcURL, data, options);
 
       rpcResponse.then((re) => {
         const result = re.data.result;

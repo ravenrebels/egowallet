@@ -4,6 +4,7 @@ firebaseServiceAccount.json
 /server/firebaseConfig.json
 /server/ravenConfig.json
 /server/ticker.bat
+/server/_CONFIG.json
 
 # Logs
 logs
