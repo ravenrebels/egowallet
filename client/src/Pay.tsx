@@ -3,56 +3,86 @@ import { Button, Card } from "ui-neumorphism";
 import { TextField } from "ui-neumorphism";
 
 export function Pay({ balance, database }) {
-  const [to, setTo] = React.useState("to default value");
-  const [amount, setAmount] = React.useState("0");
+  const [to, setTo] = React.useState("");
+  const [amount, setAmount] = React.useState("");
 
-  const submit = (event) => {
-    const str = `Are you sure you want to send\n${amount} RVN \nto ${to}?`;
-    if (confirm(str)) {
-      var requests = database.ref("requests");
+  let _setTo = setTo;
+  let _setAmount = setAmount;
+  const submit = (_) => {
 
-      var newReq = requests.push();
-      newReq.set({
-        action: "send",
-        to: to,
-        amount: amount,
-      });
+    if(isNaN(parseFloat(amount)) === true){
+      alert("Amount is not valid");
+      return;
     }
 
-    event.preventDefaults();
-    return false;
+    if(!to || to.length < 10){
+        alert("To field does not seem like a valid Ravencoin address");
+    };
+    const str = `Are you sure you want to send\n${amount} RVN \nto ${to}?`;
+    if (confirm(str)) {
+      const requests = database.ref("requests");
+      const newReq = requests.push();
+
+      
+
+      newReq.set({
+        action: "send",
+        to,
+        amount,
+      });
+      setTo("");
+      setAmount("");
+    }
   };
+
   return (
     <div className="raven-rebels-ego-wallet__pay padding-default">
       <Card className="padding-default">
         <h1>Pay Transfer</h1>
-        <form>
-          <div>
+        <div>
+          <p className="padding-default">
             <label>Available balance: {balance} </label>
-            <br />
-            <label>
-              To
-              <TextField
-                onChange={(event) => {
-                  setTo(event.value);
-                }}
-              ></TextField>
-            </label>
-          </div>
-          <div>
-            <label>
-              Amount
-              <TextField
-                onChange={(event) => {
-                  setAmount(event.value);
-                }}
-              ></TextField>
-            </label>
-          </div>
-          <Button onClick={null}>
-            Submit
+          </p>
+          <label>
+            To
+            <TextField
+              uncontrolled
+              value={to}
+              onChange={(event) => {
+                setTo(event.value.trim());
+              }}
+            ></TextField>
+          </label>
+        </div>
+        <div>
+          <label>
+            Amount
+            <TextField
+              uncontrolled
+              value={amount}
+              onChange={(event) => {
+                setAmount(event.value.trim());
+              }}
+            ></TextField>
+          </label>
+        </div>
+        <div 
+          style={{
+            marginTop: "22px",
+            display: "flex",
+            "justifyContent": "space-between",
+          }}
+        >
+          <Button onClick={submit}>Submit</Button>
+          <Button
+            onClick={() => {
+              setTo("");
+              setAmount("");
+            }}
+          >
+            Clear
           </Button>
-        </form>
+        </div>
       </Card>
     </div>
   );

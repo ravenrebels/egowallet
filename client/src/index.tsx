@@ -114,7 +114,7 @@ function App({ user, logOut }) {
 
   return (
     <Card flat>
-      {user.displayName} - {user.email}
+      
       <ul className="raven-rebels-ego-wallet__nav">
         <li className="raven-rebels-ego-wallet__nav-item">
           <Button onClick={() => setRoute(Routes.OVERVIEW)}>Home</Button>
@@ -126,6 +126,7 @@ function App({ user, logOut }) {
           <Button onClick={logOut}>Sign out</Button>
         </li>
       </ul>
+      <label>{user.displayName} - {user.email}</label>
       {route === Routes.OVERVIEW && (
         <Home
           assets={assets}
