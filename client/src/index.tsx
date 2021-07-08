@@ -126,7 +126,7 @@ function App({ user, logOut }) {
           <Button onClick={logOut}>Sign out</Button>
         </li>
       </ul>
-      <label>{user.displayName} - {user.email}</label>
+      
       {route === Routes.OVERVIEW && (
         <Home
           assets={assets}

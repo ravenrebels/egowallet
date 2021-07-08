@@ -13,7 +13,10 @@ async function work() {
   const db = admin.database();
   var requestsRef = db.ref("requests");
 
-  requestsRef.once("value", async (data) => {
+  requestsRef.on("value", async (data) => {
+    console.log("data", data);
+    console.log("data.val", data.val());
+
     const keys = Object.keys(data.val());
 
     for (const key of keys) {
@@ -32,7 +35,6 @@ async function work() {
         transactionId,
       });
     }
-    process.exit(1);
   });
 }
 
