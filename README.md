@@ -82,6 +82,8 @@ Everytime something "happens" in your wallet. You want the changes to be  writte
 
 How can we do that? Well Raven Core wallet has a configuration feature called "walletnotify". "walletnotify" will run a script everytime something happens in your wallet.
 
+tricker.js is the script/file that is keeping your Firebase project in sync.
+
 Create a script, if you are on Windows you can create a .bat file, that will tricker ./server/ticker
 Example of ticker.bat
 ```
