@@ -2,11 +2,17 @@
 
 This is a graphical user interface facade on top of your own full blown Raven core node (Ravencoin wallet).
 
+
 Egowallet has the following capabilities
 * Show wallet RVN balance
 * List all assets/tokens in the wallet
 * Transfer/send RVN from wallet
 * You can NOT send assets, not yet
+
+## Disclaimer
+
+Use this software at your own risk. It is highly experimental at this stage.
+
 
 ## OVERVIEW
 - You need Node.js installed, https://nodejs.org/en/
