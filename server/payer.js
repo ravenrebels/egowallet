@@ -27,13 +27,28 @@ async function work() {
         console.log("Skip", key, "already paid", o.transactionId);
         continue;
       }
-      const amount = parseFloat(o.amount);
-      const comment = key;
-      const transactionId = await rpc("sendtoaddress", [o.to, amount, comment]);
 
-      await requestsRef.child(key).update({
-        transactionId,
-      });
+      //Validate to
+
+      const validateAddress = await rpc("validateaddress", [o.to]);
+      console.log("validateaddress", validateAddress);
+      if (validateAddress.isvalid === true) {
+        const amount = parseFloat(o.amount);
+        const comment = key;
+        const transactionId = await rpc("sendtoaddress", [
+          o.to,
+          amount,
+          comment,
+        ]);
+
+        await requestsRef.child(key).update({
+          transactionId,
+        });
+      } else {
+        await requestsRef.child(key).update({
+          error: "to address is not valid ",
+        });
+      }
     }
   });
 }
