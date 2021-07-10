@@ -9,11 +9,18 @@ Egowallet has the following capabilities
 * You can NOT send assets, not yet
 
 ## OVERVIEW
-
+- You need Node.js installed, https://nodejs.org/en/
 - Setup a Google Firebase account/project. This will be used as middleware
 - Run a full Ravencoin node in server mode.
 - RVN Node should NOT allow inbound trafic from the internet
 - Host the web GUI (/client) wherever you like
+
+## NOTE
+
+This guide is incomplete.
+Please follow this Youtube guide for a full instructions
+https://youtu.be/FJC2VhW2edg
+
 
 ## STEP 1: getting started
 
@@ -77,7 +84,30 @@ Your ./server directory contains the file ticker.js.
 
 ticker.js should be invoked everytime something happens in your Raven Core wallet.
 
-## STEP 6: Configure Raven Core wallet to update Firebase.
+
+## STEP 6: ./server/_CONFIG:json
+
+Create a file called _CONFIG.json
+
+More info here: https://youtu.be/FJC2VhW2edg?t=953
+```
+{
+  "databaseURL": "https://YOUR PATH b.europe-west1.firebasedatabase.app",
+  "firebaseServiceAccountFilePath": "./asdf.json",
+  "rpcUsername": "SOOOSecret123_mylord",
+  "rpcPassword": "SOOOSecret123_mylord",
+  "rpcURL": "http://127.0.0.1:8766"
+}
+
+
+```
+## STEP 6: Configure service account for Firebase 
+
+Export your service account (as json file) from Firebase
+
+
+
+## STEP 7: Configure Raven Core wallet to update Firebase.
 Everytime something "happens" in your wallet. You want the changes to be  written to your Firebase project.
 
 How can we do that? Well Raven Core wallet has a configuration feature called "walletnotify". "walletnotify" will run a script everytime something happens in your wallet.
@@ -92,7 +122,7 @@ node c:\temp\egowallet\server\ticker
 
 ```
 
-## STEP 6: Activate payments capability
+## STEP 8: Activate payments capability
 
 Your ./server folder has a file called payer.js
 
