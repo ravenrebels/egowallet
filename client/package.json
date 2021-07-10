@@ -1,7 +1,7 @@
 {
   "name": "kbk",
   "version": "1.0.0",
-  "description": "", 
+  "description": "",
   "scripts": {
     "build": "parcel build src/index.html --public-url '.'",
     "start": "parcel src/index.html --no-cache",
