@@ -1,6 +1,12 @@
 # Private wallet for Ravencoin
 
-This is a graphical user interface facade on top of your own full blown Raven core node (Ravencoin wallet)
+This is a graphical user interface facade on top of your own full blown Raven core node (Ravencoin wallet).
+
+Egowallet has the following capabilities
+* Show wallet RVN balance
+* List all assets/tokens in the wallet
+* Transfer/send RVN from wallet
+* You can NOT send assets, not yet
 
 ## OVERVIEW
 
@@ -48,8 +54,8 @@ Given that you are using your command line tool and that your current directory 
 ## STEP 4: Secure your Firebase database
 
 - Log in once with your private Google Account in your local web app.
-- Go to your Google Firebase project which should now contain a user. Check the user.uid, copy it.
-- Realtime Database: update read/write rules,
+- Go to your Google Firebase project, check Authentication/users, it should now contain a user. Check the user.uid, copy it.
+- Go to Realtime Database > Rules. Update the read/write rules so that only your user is allowed access.
 
 ```
 {
@@ -60,28 +66,58 @@ Given that you are using your command line tool and that your current directory 
 }
 ```
 
-## SERVER part
+## STEP 5: SERVER part, install dependencies
 
-- npm install
-- npm start
+Start by installing dependencies
+In your command line tool, change directory to ./server.
 
-# THE SERVER PART
+- Run command "npm install"
 
-Configure your Raven core (Ravencoin QT wallet)
+Your ./server directory contains the file ticker.js.
 
-- walletnotify
+ticker.js should be invoked everytime something happens in your Raven Core wallet.
 
-## Capabilities
+## STEP 6: Configure Raven Core wallet to update Firebase.
+Everytime something "happens" in your wallet. You want the changes to be  written to your Firebase project.
 
-Log in using Google
+How can we do that? Well Raven Core wallet has a configuration feature called "walletnotify". "walletnotify" will run a script everytime something happens in your wallet.
 
-Display balance
+Create a script, if you are on Windows you can create a .bat file, that will tricker ./server/ticker
+Example of ticker.bat
+```
+cd c:\temp\egowallet\server
+node c:\temp\egowallet\server\ticker
 
-Receive
+```
 
-Withdraw/SEND
+## STEP 6: Activate payments capability
 
-Operations
-transfer tokens to address
-transfer RVN to address
-Create a receive address.
+Your ./server folder has a file called payer.js
+
+If you run this file, your app starts making payments of RVN.
+
+Start it by
+```
+node payer
+```
+
+ 
+
+## Example of Raven wallet config (raven.conf)
+```
+# Accept command line and JSON-RPC commands.
+server=1
+whitelist=127.0.0.1
+txindex=1
+addressindex=1
+assetindex=1
+timestampindex=1
+spentindex=1
+
+# Username for JSON-RPC connections
+rpcuser=megasecret
+
+# Password for JSON-RPC connections
+rpcpassword=megasecret
+walletnotify=c:/temp/egowallet/server/ticker.bat
+```
