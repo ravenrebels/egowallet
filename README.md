@@ -109,8 +109,10 @@ More info here: https://youtu.be/FJC2VhW2edg?t=953
 ```
 ## STEP 6: Configure service account for Firebase 
 
-Export your service account (as json file) from Firebase
-
+Export your service account (as json file) from Firebase.
+Name the file firebaseServiceAccount.json (must match the firebaseServiceAccountFilePath in _CONFIG.json above).
+Check out this part of our video guide for exact instructions.
+https://youtu.be/FJC2VhW2edg?t=1097
 
 
 ## STEP 7: Configure Raven Core wallet to update Firebase.
