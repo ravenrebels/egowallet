@@ -129,6 +129,9 @@ cd c:\temp\egowallet\server
 node c:\temp\egowallet\server\ticker
 
 ```
+Check out this part of the video for full instructions
+https://youtu.be/FJC2VhW2edg?t=759
+
 
 ## STEP 8: Activate payments capability
 
