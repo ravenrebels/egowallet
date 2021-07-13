@@ -65,7 +65,7 @@ Given that you are using your command line tool and that your current directory 
   Open your web browser and navigate to http://localhost:1234
 
 ## STEP 4: Secure your Firebase database
-
+- Configure your Firebase project to use Authentication > Google.
 - Log in once with your private Google Account in your local web app.
 - Go to your Google Firebase project, check Authentication/users, it should now contain a user. Check the user.uid, copy it.
 - Go to Realtime Database > Rules. Update the read/write rules so that only your user is allowed access.
