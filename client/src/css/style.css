@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   height: auto;
@@ -19,9 +20,8 @@ body {
 }
 /* mobile first */
 #app {
-  width: calc(100vw - 32px); 
+  width: 100%;
   margin: auto;
-  margin-top: 16px;
 }
 @media only screen and (min-width: 600px) {
   body {
@@ -29,7 +29,6 @@ body {
     min-height: calc(100vh);
   }
   #app {
-   
     max-width: calc(100vw);
     width: 600px;
 
@@ -45,11 +44,11 @@ body {
   list-style: none;
   padding-top: 22px;
 }
-.raven-rebels-ego-wallet__nav-item{
+.raven-rebels-ego-wallet__nav-item {
   display: inline-block;
   margin-left: 22px;
 }
-.raven-rebels-ego-wallet__balance{
+.raven-rebels-ego-wallet__balance {
   margin-bottom: 44px;
   font-size: 1.5rem;
 }
