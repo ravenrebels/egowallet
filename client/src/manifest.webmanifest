@@ -1,0 +1,11 @@
+{
+    "name": "Ego wallet",
+    "short_name": "Ego wallet",
+    "start_url": "index.html",
+    "display": "standalone",
+    "background_color": "#fff",
+    "description": "Ego Wallet",
+    "icons": [
+        
+    ]
+}
