@@ -12,6 +12,12 @@ admin.initializeApp({
 //Execute the actual code in an async function so we can use await
 async function work() {
   const db = admin.database();
+
+  db.ref("receiveaddress").once("value", (snapshot) => {
+    if (snapshot.exists() == false) {
+      generateReceiveAddress(db);
+    }
+  });
   var requestsRef = db.ref("requests");
 
   requestsRef.on("value", async (data) => {
@@ -121,4 +127,10 @@ async function rpc(method, params) {
     }
   });
   return promise;
+}
+
+async function generateReceiveAddress(db) {
+  const newAddress = await rpc("getnewaddress", []);
+  await db.ref("receiveaddress").set(newAddress);
+  console.info("Receive address: set to " + newAddress);
 }

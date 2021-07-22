@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Card } from "ui-neumorphism";
 import { TextField } from "ui-neumorphism";
 
-export function Pay({ balance, database, assets }) {
+export function Pay({ balance, database, assets, receiveAddress }) {
   const [to, setTo] = React.useState("");
   const [amount, setAmount] = React.useState("");
   const [asset, setAsset] = React.useState("RVN");
@@ -30,7 +30,7 @@ export function Pay({ balance, database, assets }) {
         action: "send",
         to,
         amount,
-        asset
+        asset,
       });
       setTo("");
       setAmount("");
@@ -40,7 +40,7 @@ export function Pay({ balance, database, assets }) {
   return (
     <div className="raven-rebels-ego-wallet__pay padding-default">
       <Card className="padding-default">
-        <h1>Pay Transfer</h1>
+        <h1>Pay / Transfer</h1>
         <div>
           <p className="padding-default">
             <label>Available balance: {balance} </label>
@@ -108,6 +108,15 @@ export function Pay({ balance, database, assets }) {
           </Button>
         </div>
       </Card>
+      <div style={{ marginTop: "22px" }}>
+        <Card className="padding-default" style={{ marginBottom: "22px" }}>
+          <h3>Receive address</h3>
+          <div style={{ wordWrap: "break-word" }}>{receiveAddress}</div>
+          <img
+            src={`http://api.qrserver.com/v1/create-qr-code/?color=000000&bgcolor=FFFFFF&data=${receiveAddress}&qzone=1&margin=0&size=150x150&ecc=L`}
+          />
+        </Card>
+      </div>
     </div>
   );
 }

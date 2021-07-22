@@ -81,6 +81,7 @@ function App({ user, logOut }) {
   const [assets, setAssets] = React.useState([]);
   const [balance, setBalance] = React.useState("0.0");
   const [unconfirmedBalance, setUnconfirmedBalance] = React.useState("0");
+  const [receiveAddress, setReceiveAddress] = React.useState("");
   React.useEffect(() => {
     //Listen to assets
     firebase
@@ -96,6 +97,14 @@ function App({ user, logOut }) {
       .ref("balance")
       .on("value", (snapshot) => {
         setBalance(snapshot.val());
+      });
+
+    //Listen to balance
+    firebase
+      .database()
+      .ref("receiveaddress")
+      .on("value", (snapshot) => {
+        setReceiveAddress(snapshot.val());
       });
 
     //Listen to unconfirmed balance
@@ -114,7 +123,6 @@ function App({ user, logOut }) {
 
   return (
     <Card flat>
-      
       <ul className="raven-rebels-ego-wallet__nav">
         <li className="raven-rebels-ego-wallet__nav-item">
           <Button onClick={() => setRoute(Routes.OVERVIEW)}>Home</Button>
@@ -126,7 +134,7 @@ function App({ user, logOut }) {
           <Button onClick={logOut}>Sign out</Button>
         </li>
       </ul>
-      
+
       {route === Routes.OVERVIEW && (
         <Home
           assets={assets}
@@ -134,7 +142,14 @@ function App({ user, logOut }) {
           unconfirmedBalance={unconfirmedBalance}
         />
       )}
-      {route === Routes.PAY && <Pay assets={assets} database={database} balance={balance} />}
+      {route === Routes.PAY && (
+        <Pay
+          assets={assets}
+          balance={balance}
+          database={database}
+          receiveAddress={receiveAddress}
+        />
+      )}
     </Card>
   );
 }
