@@ -134,7 +134,7 @@ function App({ user, logOut }) {
           unconfirmedBalance={unconfirmedBalance}
         />
       )}
-      {route === Routes.PAY && <Pay database={database} balance={balance} />}
+      {route === Routes.PAY && <Pay assets={assets} database={database} balance={balance} />}
     </Card>
   );
 }

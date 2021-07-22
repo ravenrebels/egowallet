@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "parcel build src/index.html --public-url '.'",
+    "build": "parcel build src/index.html --public-url ./",
     "start": "parcel src/index.html --no-cache",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,6 +11,8 @@
   "author": "Dick Henrik Larsson (https://github.com/dicklarsson)",
   "license": "ISC",
   "devDependencies": {
+    "@parcel/packager-raw-url": "^2.0.0-beta.2",
+    "@parcel/transformer-webmanifest": "^2.0.0-beta.2",
     "firebaseui": "^4.8.0",
     "parcel": "^2.0.0-beta.2",
     "react": "^17.0.2",
