@@ -54,12 +54,11 @@ export function Pay({ balance, database, assets, receiveAddress }) {
                   setAsset(event.target.value);
                 }}
               >
-                <option>RVN</option>
+                <option value="RVN">RVN - {balance}</option>
                 {assets &&
                   assets.map((asset) => {
-                    console.log(asset);
                     return (
-                      <option value={asset.name}>
+                      <option key={asset.name} value={asset.name}>
                         {asset.name} - {asset.balance}
                       </option>
                     );
