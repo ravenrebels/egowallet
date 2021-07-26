@@ -4,6 +4,9 @@ const admin = require("firebase-admin");
 const CONFIG = require("./_CONFIG.json");
 const serviceAccount = require(CONFIG.firebaseServiceAccountFilePath);
 
+const CustomErrors = {
+  INSUFFICIENT_FUNDS: "INSUFFICIENT_FUNDS",
+};
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: CONFIG.databaseURL,
@@ -12,14 +15,14 @@ admin.initializeApp({
 //Execute the actual code in an async function so we can use await
 async function work() {
   const db = admin.database();
-
+  console.log("Starting work");
+  //Every time we start payer, make sure we have a receive address
   db.ref("receiveaddress").once("value", (snapshot) => {
     if (snapshot.exists() == false) {
       generateReceiveAddress(db);
     }
   });
-  var requestsRef = db.ref("requests");
-
+  const requestsRef = db.ref("requests");
   requestsRef.on("value", async (data) => {
     const keys = Object.keys(data.val());
 
@@ -32,60 +35,57 @@ async function work() {
         continue;
       }
 
-      //Validate to
-      const validateAddress = await rpc("validateaddress", [o.to]);
+      //Payment has error? skip it
+      if (o.error) {
+        continue;
+      }
+
       const amount = parseFloat(o.amount);
-      const amountIsNegative = !(amount > 0);
-
-      if (amountIsNegative === true) {
-        await requestsRef.child(key).update({
-          error: "amount is negative",
-        });
-        continue;
-      }
-
-      //
-      if (validateAddress.isvalid === false) {
-        await requestsRef.child(key).update({
-          error: "to address is not valid ",
-        });
-        continue;
-      }
 
       const comment = key;
       let error = null;
       try {
         let transactionId = null;
-
         if (o.asset === "RVN") {
-          transactionId = await rpc("sendtoaddress", [o.to, amount, comment]);
+          try {
+            transactionId = await rpc("sendtoaddress", [o.to, amount, comment]);
+            await requestsRef.child(key).update({
+              transactionId,
+            });
+          } catch (e) {
+            await requestsRef.child(key).update({
+              error: e.error.message,
+            });
+            continue;
+          }
         }
         //Send asset instead of RVN?
         else if (o.asset !== "RVN") {
-          //syntax
-          //transfer "asset_name" qty "to_address" "message" expire_time "change_address" "asset_change_address"
-          const args = [o.asset, o.amount, o.to];
           try {
+            //syntax
+            //transfer "asset_name" qty "to_address" "message" expire_time "change_address" "asset_change_address"
+            const args = [o.asset, o.amount, o.to];
             transactionId = await rpc("transfer", args);
             transactionId = transactionId[0];
-            console.log("Got", transactionId, "when sending asset");
-          } catch (e) {}
+            await requestsRef.child(key).update({
+              transactionId,
+            });
+          } catch (e) {
+            
+            await requestsRef.child(key).update({
+              error: e.error.message,
+            });
+
+            continue;
+          }
         } else {
           await requestsRef.child(key).update({
             error: "No asset specified",
           });
           continue;
         }
-
-        //Command wallet to send to address
-
-        //Store the transaction id
-        await requestsRef.child(key).update({
-          transactionId,
-        });
-      } catch (e) {
-        //TODO is it possible to get better error explanation from RPC call?
-        error = "sendtoaddress failed";
+      } catch (e) { 
+         error = "sendtoaddress failed";
         await requestsRef.child(key).update({
           error,
         });
@@ -119,8 +119,8 @@ async function rpc(method, params) {
         const result = re.data.result;
         resolutionFunc(result);
       });
-      rpcResponse.catch((e) => {
-        rejectionFunc(e);
+      rpcResponse.catch((e) => { 
+        rejectionFunc(e.response.data);
       });
     } catch (e) {
       rejectionFunc(e);

@@ -67,8 +67,9 @@ export function Pay({ balance, database, assets, receiveAddress }) {
             </label>
           </div>
           <label>
-            To
+            To address
             <TextField
+              outlined  
               uncontrolled
               value={to}
               onChange={(event) => {
@@ -83,6 +84,7 @@ export function Pay({ balance, database, assets, receiveAddress }) {
             <TextField
               uncontrolled
               value={amount}
+              outlined
               onChange={(event) => {
                 setAmount(event.value.trim());
               }}
