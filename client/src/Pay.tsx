@@ -7,7 +7,7 @@ export function Pay({ balance, database, assets, receiveAddress }) {
   const [amount, setAmount] = React.useState("");
   const [asset, setAsset] = React.useState("RVN");
 
-  const submit = (_) => {
+  const submit = async (_) => {
     if (isNaN(parseFloat(amount)) === true) {
       alert("Amount is not valid");
       return;
@@ -31,6 +31,19 @@ export function Pay({ balance, database, assets, receiveAddress }) {
         to,
         amount,
         asset,
+      });
+
+      newReq.on("value", (snapshot) => {
+        const data = snapshot.val();
+
+        if (data.error) {
+          const text = `
+          ${data.error}. 
+          Could not send ${data.amount} 
+          of ${data.asset} 
+          to ${data.to}`;
+          alert(text);
+        }
       });
       setTo("");
       setAmount("");
