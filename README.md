@@ -7,7 +7,7 @@ Egowallet has the following capabilities
 * Show wallet RVN balance
 * List all assets/tokens in the wallet
 * Transfer/send RVN from wallet
-* You can NOT send assets, not yet
+* You can send/receive assets/tokens
 
 ## Disclaimer
 
