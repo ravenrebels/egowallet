@@ -50,6 +50,7 @@ export function Pay({ balance, database, assets, receiveAddress }) {
               Token/Asset
               <br />
               <select
+                style={{ fontSize: "16px" }}
                 onChange={(event) => {
                   setAsset(event.target.value);
                 }}
@@ -69,7 +70,7 @@ export function Pay({ balance, database, assets, receiveAddress }) {
           <label>
             To address
             <TextField
-              outlined  
+              outlined
               uncontrolled
               value={to}
               onChange={(event) => {
