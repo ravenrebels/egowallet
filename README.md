@@ -148,7 +148,7 @@ node payer
 
 Change directory to ./client
 
-Run command "npm run build".
+Run command ``` npm run build ```
 
 The result is now in the ./dist folder
 
