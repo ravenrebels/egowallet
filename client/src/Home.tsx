@@ -2,9 +2,18 @@ import React from "react";
 import { Card, ProgressCircular, Table } from "ui-neumorphism";
 export function Home({ assets, balance, unconfirmedBalance }) {
   const headers = [
-    { text: "Asset name", align: "left", value: "name" },
+    { text: "Asset name", align: "left", value: "link" },
     { text: "Balance", align: "right", value: "balance" },
   ];
+
+  assets = assets.map(function(asset){
+
+    //https://cloudflare-ipfs.com/ipfs/QmSX9GJ3a3yRaL5FrXcpQXRoGVCuXWrymAiB7pxoPcQ9TB
+
+    asset.link = asset.ipfs_hash ? <a target="ipfs" href={"https://cloudflare-ipfs.com/ipfs/" + asset.ipfs_hash}>{asset.name}</a> : asset.name
+
+    return asset;
+  })
 
   const items = assets;
   const balanceFormatted = new Intl.NumberFormat("en-IN").format(

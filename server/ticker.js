@@ -25,7 +25,7 @@ admin.initializeApp({
 try {
   if (fs.existsSync(lockFilePath) === true) {
     const data = fs.readFileSync(lockFilePath, { encoding: "utf8", flag: "r" });
-    const time = parseInt(data); 
+    const time = parseInt(data);
     const isLockOneSecondOld = time + 1000 > Date.now();
     if (isLockOneSecondOld === true) {
       console.error("Exit because of lock file");
@@ -63,14 +63,17 @@ async function work() {
   const assetNames = Object.keys(listmyassets);
 
   for (const assetName of assetNames) {
+    //Fetch meta data about the asset
+
+    const data = await rpc("getassetdata", [assetName]);
     assets.push({
       name: assetName,
       balance: listmyassets[assetName],
+      ipfs_hash: data.ipfs_hash || null,
     });
   }
   const ref = db.ref("assets");
   await ref.set(assets);
- 
 
   process.exit(0);
 }
