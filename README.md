@@ -144,6 +144,16 @@ Start it by
 node payer
 ```
 
+## STEP 9: Deploy your web app
+
+Change directory to ./client
+
+Run command "npm run build".
+
+The result is now in the ./dist folder
+
+Copy/transfer/deploy the files in ./dist to your web hosting service.
+
  
 
 ## Example of Raven wallet config (raven.conf)
