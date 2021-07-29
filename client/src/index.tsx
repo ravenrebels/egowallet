@@ -117,8 +117,8 @@ function App({ user, logOut }) {
   };
 
   return (
-    <div >
-      <ul className="padding-default raven-rebels-ego-wallet__nav">
+    <div>
+      <ul className="raven-rebels-ego-wallet__nav">
         <li className="raven-rebels-ego-wallet__nav-item">
           <button
             className="unstyled-button"
