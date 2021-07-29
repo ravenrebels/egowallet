@@ -42,7 +42,9 @@ export function Pay({ balance, database, assets, receiveAddress, okCallback }) {
           to ${data.to}`;
           alert(text);
         } else {
-          if (okCallback) {
+          //Only redirect when the request has gotten a txid
+
+          if (data.transactionId && okCallback) {
             okCallback(data);
           }
         }

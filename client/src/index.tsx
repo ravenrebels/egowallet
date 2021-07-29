@@ -166,8 +166,7 @@ function App({ user, logOut }) {
           balance={balance}
           database={database}
           receiveAddress={receiveAddress}
-          okCallback={(transactionData) => {
-            console.log("ok callback");
+          okCallback={(transactionData) => { 
             setRoute(Routes.TRANSACTIONS);
           }}
         />
