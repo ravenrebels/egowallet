@@ -138,11 +138,16 @@ Create a script, if you are on Windows you can create a .bat file, that will tri
 Example of ticker.bat
 ```
 cd c:\temp\egowallet\server
-node c:\temp\egowallet\server\ticker %s
-
+node c:\temp\egowallet\server\ticker %1
 ```
+Note: bat files (window) uses %1
+Raven conf file uses %s (confusing) to represent the argument.  
 
-Note: the %s at the end represents the transaction id
+In your Raven wallet configuration file.
+Add 
+```
+walletnotify=c:/temp/egowallet/server/ticker.bat %s
+```
 
 Check out this part of the video for full instructions
 https://youtu.be/FJC2VhW2edg?t=759
