@@ -118,7 +118,7 @@ function App({ user, logOut }) {
 
   return (
     <div>
-      <ul className="raven-rebels-ego-wallet__nav">
+      <ul className="padding-default raven-rebels-ego-wallet__nav">
         <li className="raven-rebels-ego-wallet__nav-item">
           <button
             className="unstyled-button"
@@ -143,13 +143,12 @@ function App({ user, logOut }) {
             <i className="fas fa-list fa-2x" title="Transactions"></i>
           </button>
         </li>
-        
+
         <li className="raven-rebels-ego-wallet__nav-item">
           <button className="unstyled-button" onClick={logOut}>
             <i className="fas fa-sign-out-alt fa-2x" title="Sign out"></i>
           </button>
         </li>
-       
       </ul>
       {route === Routes.TRANSACTIONS && (
         <Transactions transactions={transactions}></Transactions>
@@ -167,6 +166,10 @@ function App({ user, logOut }) {
           balance={balance}
           database={database}
           receiveAddress={receiveAddress}
+          okCallback={(transactionData) => {
+            console.log("ok callback");
+            setRoute(Routes.TRANSACTIONS);
+          }}
         />
       )}
     </div>

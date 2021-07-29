@@ -43,7 +43,7 @@ export function Home({ assets, balance, unconfirmedBalance }) {
         return (
           <div
             className="padding-default glass"
-            key={i.assetName}
+            key={i.name}
             style={{ marginBottom: "22px" }}
           >
             <div style={{ marginBottom: "5px" }}>{i.link}</div>

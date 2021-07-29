@@ -1,6 +1,6 @@
 import React from "react";
 
-export function Pay({ balance, database, assets, receiveAddress }) {
+export function Pay({ balance, database, assets, receiveAddress, okCallback }) {
   const [to, setTo] = React.useState("");
   const [amount, setAmount] = React.useState("");
   const [asset, setAsset] = React.useState("RVN");
@@ -41,6 +41,10 @@ export function Pay({ balance, database, assets, receiveAddress }) {
           of ${data.asset} 
           to ${data.to}`;
           alert(text);
+        } else {
+          if (okCallback) {
+            okCallback(data);
+          }
         }
       });
       setTo("");
@@ -52,7 +56,7 @@ export function Pay({ balance, database, assets, receiveAddress }) {
     <div className="raven-rebels-ego-wallet__pay padding-default">
       <div className="padding-default glass">
         <h1>Pay / Transfer</h1>
-        <div style={{overflow: "hidden"}}>
+        <div style={{ overflow: "hidden" }}>
           <p className="padding-default">
             <label>Available balance: {balance} </label>
           </p>
@@ -61,6 +65,7 @@ export function Pay({ balance, database, assets, receiveAddress }) {
               Token/Asset
               <br />
               <select
+                className="padding-modest"
                 style={{ fontSize: "16px", borderRadius: "5px" }}
                 onChange={(event) => {
                   setAsset(event.target.value);
@@ -81,6 +86,7 @@ export function Pay({ balance, database, assets, receiveAddress }) {
           <label>
             To address
             <input
+              className="padding-modest"
               style={{
                 borderRadius: "5px",
                 display: "block",
@@ -98,6 +104,7 @@ export function Pay({ balance, database, assets, receiveAddress }) {
           <label>
             Amount
             <input
+              className="padding-modest"
               style={{
                 borderRadius: "5px",
                 fontSize: "20px",
@@ -141,6 +148,12 @@ export function Pay({ balance, database, assets, receiveAddress }) {
           <h3>Receive address</h3>
           <div style={{ wordWrap: "break-word" }}>{receiveAddress}</div>
           <img
+            style={{
+              background: "white",
+              borderRadius: "10px",
+              marginTop: "10px",
+            }}
+            className="padding-modest"
             src={`http://api.qrserver.com/v1/create-qr-code/?color=000000&bgcolor=FFFFFF&data=${receiveAddress}&qzone=1&margin=0&size=150x150&ecc=L`}
           />
         </div>
