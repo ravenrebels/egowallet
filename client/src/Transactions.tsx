@@ -1,4 +1,4 @@
-import React from "react"; 
+import React from "react";
 
 export function Transactions({ transactions }) {
   if (!transactions) {
@@ -25,23 +25,22 @@ export function Transactions({ transactions }) {
     <div className="raven-rebels-ego-wallet__pay padding-default">
       <div className="padding-default glass">
         <h1>Transactions</h1>
-        <div  style={{ marginTop: "40px" }}>
+        <div style={{ marginTop: "40px" }}>
           {keys.map(function (key) {
             const trans = transactions[key];
 
             const details = {
               amount: 0,
-              assetName: "RVN",
+              assetName: "",
               category: "",
               destination: "",
             };
-            const isRVN = !!trans.details;
-            if (isRVN === true) {
-              details.amount = trans.amount;
+
+            if (trans.details) {
+              (details.assetName = "RVN"), (details.amount = trans.amount);
               details.category = trans.details[0].category;
               details.destination = trans.details[0].address;
-             
-            } else if (isRVN === false) {
+            } else if (trans.asset_details) {
               details.amount = trans.asset_details[0].amount;
               details.assetName = trans.asset_details[0].asset_name;
               details.category = trans.asset_details[0].category;
@@ -57,8 +56,14 @@ export function Transactions({ transactions }) {
             const href = "https://explorer.ravenland.org/tx/" + key;
 
             return (
-              <div className="glass" key={key} style={{padding: "10px", marginBottom: "22px" }}>
-                <div style={{ fontWeight: "bold" }}>{date.toLocaleString()}</div>
+              <div
+                className="glass"
+                key={key}
+                style={{ padding: "10px", marginBottom: "22px" }}
+              >
+                <div style={{ fontWeight: "bold" }}>
+                  {date.toLocaleString()}
+                </div>
                 {send === true ? "Sent" : "Received"} {amount}{" "}
                 {details.assetName}
                 <br />
