@@ -52,7 +52,7 @@ export function Pay({ balance, database, assets, receiveAddress }) {
     <div className="raven-rebels-ego-wallet__pay padding-default">
       <div className="padding-default glass">
         <h1>Pay / Transfer</h1>
-        <div>
+        <div style={{overflow: "hidden"}}>
           <p className="padding-default">
             <label>Available balance: {balance} </label>
           </p>

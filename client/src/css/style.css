@@ -37,8 +37,9 @@ body {
   background-repeat: no-repeat;
   background-position: top;
   background-size: 375px 480px;
-}
 
+  background-position: top 60px left 10px;
+}
 
 @media only screen and (min-width: 600px) {
   body {
@@ -53,6 +54,7 @@ body {
     margin-top: 30px;
   }
   .bird {
+    background-position: top;
     background-size: 640px 680px;
   }
 }
@@ -67,6 +69,9 @@ body {
 .raven-rebels-ego-wallet__nav-item {
   display: inline-block;
   margin-right: 22px;
+}
+.raven-rebels-ego-wallet__nav-item:last-child {
+  margin-right: 0;
 }
 .raven-rebels-ego-wallet__nav-item:last-child {
   float: right;
@@ -85,6 +90,7 @@ body {
   background: none;
   color: white;
   cursor: hand;
+  font-family: "Quicksand", sans-serif;
 }
 @keyframes blinker {
   50% {
