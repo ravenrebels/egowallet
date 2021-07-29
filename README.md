@@ -2,6 +2,8 @@
 
 This is a graphical user interface facade on top of your own full blown Raven core node (Ravencoin wallet).
 
+Getting started video here:  https://youtu.be/FJC2VhW2edg
+
 
 Egowallet has the following capabilities
 * Show wallet RVN balance
