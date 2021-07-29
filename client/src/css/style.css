@@ -31,6 +31,15 @@ body {
   width: 100%;
   margin: auto;
 }
+
+.bird {
+  background-image: url("https://cryptologos.cc/logos/ravencoin-rvn-logo.svg?v=013");
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: 375px 480px;
+}
+
+
 @media only screen and (min-width: 600px) {
   body {
     width: 100%;
@@ -42,6 +51,9 @@ body {
 
     margin: auto;
     margin-top: 30px;
+  }
+  .bird {
+    background-size: 640px 680px;
   }
 }
 
@@ -57,22 +69,18 @@ body {
   margin-right: 22px;
 }
 .raven-rebels-ego-wallet__nav-item:last-child {
-  float:right;
+  float: right;
 }
 .raven-rebels-ego-wallet__balance {
   margin-bottom: 44px;
   font-size: 1.5rem;
 }
-.bird {
-  background-image: url("https://cryptologos.cc/logos/ravencoin-rvn-logo.svg?v=013");
-  background-repeat: no-repeat;
-  background-position: top;
-}
+
 .blink_me {
   animation: blinker 3s linear infinite;
 }
 
-.unstyled-button{
+.unstyled-button {
   border: none;
   background: none;
   color: white;
