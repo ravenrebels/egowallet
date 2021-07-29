@@ -1,6 +1,7 @@
-export enum Routes{
-    LOGIN,
-    OVERVIEW,
-    RECEIVE,
-    PAY
+export enum Routes {
+  LOGIN,
+  OVERVIEW,
+  RECEIVE,
+  PAY,
+  TRANSACTIONS,
 }

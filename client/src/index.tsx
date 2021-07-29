@@ -3,13 +3,13 @@ import ReactDOM from "react-dom";
 import { Routes } from "./Routes";
 import { Home } from "./Home";
 import { Pay } from "./Pay";
-import { Button, Card } from "ui-neumorphism";
+
+import { Transactions } from "./Transactions";
 import firebase from "firebase";
 import firebaseConfig from "./firebaseConfig.json";
 export type User = firebase.User;
 import { default as StyledFirebaseAuth } from "react-firebaseui/StyledFirebaseAuth";
 const app = firebase.initializeApp(firebaseConfig);
-import "ui-neumorphism/dist/index.css";
 const database = app.database();
 
 const logOut = () => {
@@ -55,22 +55,7 @@ function useUser() {
 
   React.useEffect(() => {
     firebase.auth().onAuthStateChanged(async function (user: User) {
-      //Check that the user has a user profile
-
       setUser(user);
-
-      if (user === null) {
-        return;
-      }
-      /*  const data =
-        user.providerData &&
-        user.providerData.length > 0 &&
-        user.providerData[0];
-
-      firebase
-        .database()
-        .ref("users/" + user.uid + "/profile_data")
-        .update(data);*/
     });
   }, []);
   return user;
@@ -82,6 +67,8 @@ function App({ user, logOut }) {
   const [balance, setBalance] = React.useState("0.0");
   const [unconfirmedBalance, setUnconfirmedBalance] = React.useState("0");
   const [receiveAddress, setReceiveAddress] = React.useState("");
+
+  const [transactions, setTransactions] = React.useState(null);
   React.useEffect(() => {
     //Listen to assets
     firebase
@@ -114,6 +101,14 @@ function App({ user, logOut }) {
       .on("value", (snapshot) => {
         setUnconfirmedBalance(snapshot.val());
       });
+
+    //Listen to transactions
+    firebase
+      .database()
+      .ref("transactions")
+      .on("value", (snapshot) => {
+        setTransactions(snapshot.val());
+      });
   }, []);
   const style = {
     width: "200px",
@@ -122,19 +117,43 @@ function App({ user, logOut }) {
   };
 
   return (
-    <Card flat>
+    <div>
       <ul className="raven-rebels-ego-wallet__nav">
         <li className="raven-rebels-ego-wallet__nav-item">
-          <Button onClick={() => setRoute(Routes.OVERVIEW)}>Home</Button>
+          <button
+            className="unstyled-button"
+            onClick={() => setRoute(Routes.OVERVIEW)}
+          >
+            <i className="fa fa-home fa-2x" title="Home"></i>
+          </button>
         </li>
         <li className="raven-rebels-ego-wallet__nav-item">
-          <Button onClick={() => setRoute(Routes.PAY)}>Pay</Button>
+          <button
+            className="unstyled-button"
+            onClick={() => setRoute(Routes.PAY)}
+          >
+            <i className="fa fa-exchange-alt fa-2x" title="Pay"></i>
+          </button>
         </li>
         <li className="raven-rebels-ego-wallet__nav-item">
-          <Button onClick={logOut}>Sign out</Button>
+          <button
+            className="unstyled-button"
+            onClick={() => setRoute(Routes.TRANSACTIONS)}
+          >
+            <i className="fas fa-list fa-2x" title="Transactions"></i>
+          </button>
         </li>
+        
+        <li className="raven-rebels-ego-wallet__nav-item">
+          <button className="unstyled-button" onClick={logOut}>
+            <i className="fas fa-sign-out-alt fa-2x" title="Sign out"></i>
+          </button>
+        </li>
+       
       </ul>
-
+      {route === Routes.TRANSACTIONS && (
+        <Transactions transactions={transactions}></Transactions>
+      )}
       {route === Routes.OVERVIEW && (
         <Home
           assets={assets}
@@ -150,7 +169,7 @@ function App({ user, logOut }) {
           receiveAddress={receiveAddress}
         />
       )}
-    </Card>
+    </div>
   );
 }
 

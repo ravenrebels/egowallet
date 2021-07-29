@@ -4,14 +4,22 @@ body {
   padding: 0;
   height: auto;
 }
+a {
+  color: white;
+}
 body {
-  background-color: #000;
-  background-image: linear-gradient(147deg, #eeee 0%, #eeee 74%);
+  background: #191970;
+  color: white;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 50%;
+  background-size: cover;
+  background-image: linear-gradient(147deg, #923cb5, #000 74%);
   font-family: "Quicksand", sans-serif;
 }
 
 .glass {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.1);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
@@ -46,17 +54,30 @@ body {
 }
 .raven-rebels-ego-wallet__nav-item {
   display: inline-block;
-  margin-left: 22px;
+  margin-right: 22px;
+}
+.raven-rebels-ego-wallet__nav-item:last-child {
+  float:right;
 }
 .raven-rebels-ego-wallet__balance {
   margin-bottom: 44px;
   font-size: 1.5rem;
 }
-
+.bird {
+  background-image: url("https://cryptologos.cc/logos/ravencoin-rvn-logo.svg?v=013");
+  background-repeat: no-repeat;
+  background-position: top;
+}
 .blink_me {
   animation: blinker 3s linear infinite;
 }
 
+.unstyled-button{
+  border: none;
+  background: none;
+  color: white;
+  cursor: hand;
+}
 @keyframes blinker {
   50% {
     opacity: 0;

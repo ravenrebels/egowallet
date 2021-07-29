@@ -1,6 +1,4 @@
 import React from "react";
-import { Button, Card } from "ui-neumorphism";
-import { TextField } from "ui-neumorphism";
 
 export function Pay({ balance, database, assets, receiveAddress }) {
   const [to, setTo] = React.useState("");
@@ -52,7 +50,7 @@ export function Pay({ balance, database, assets, receiveAddress }) {
 
   return (
     <div className="raven-rebels-ego-wallet__pay padding-default">
-      <Card className="padding-default">
+      <div className="padding-default glass">
         <h1>Pay / Transfer</h1>
         <div>
           <p className="padding-default">
@@ -63,7 +61,7 @@ export function Pay({ balance, database, assets, receiveAddress }) {
               Token/Asset
               <br />
               <select
-                style={{ fontSize: "16px" }}
+                style={{ fontSize: "16px", borderRadius: "5px" }}
                 onChange={(event) => {
                   setAsset(event.target.value);
                 }}
@@ -82,27 +80,34 @@ export function Pay({ balance, database, assets, receiveAddress }) {
           </div>
           <label>
             To address
-            <TextField
-              outlined
-              uncontrolled
+            <input
+              style={{
+                borderRadius: "5px",
+                display: "block",
+                fontSize: "20px",
+                width: "100%",
+              }}
               value={to}
               onChange={(event) => {
-                setTo(event.value.trim());
+                setTo(event.target.value.trim());
               }}
-            ></TextField>
+            ></input>
           </label>
         </div>
-        <div>
+        <div style={{ marginTop: "10px" }}>
           <label>
             Amount
-            <TextField
-              uncontrolled
-              value={amount}
-              outlined
-              onChange={(event) => {
-                setAmount(event.value.trim());
+            <input
+              style={{
+                borderRadius: "5px",
+                fontSize: "20px",
+                display: "block",
               }}
-            ></TextField>
+              value={amount}
+              onChange={(event) => {
+                setAmount(event.target.value.trim());
+              }}
+            ></input>
           </label>
         </div>
         <div
@@ -112,25 +117,33 @@ export function Pay({ balance, database, assets, receiveAddress }) {
             justifyContent: "space-between",
           }}
         >
-          <Button onClick={submit}>Submit</Button>
-          <Button
+          <button
+            className="unstyled-button glass"
+            style={{ padding: "10px" }}
+            onClick={submit}
+          >
+            Submit
+          </button>
+          <button
+            className="unstyled-button glass"
+            style={{ padding: "10px" }}
             onClick={() => {
               setTo("");
               setAmount("");
             }}
           >
             Clear
-          </Button>
+          </button>
         </div>
-      </Card>
+      </div>
       <div style={{ marginTop: "22px" }}>
-        <Card className="padding-default" style={{ marginBottom: "22px" }}>
+        <div className="padding-default glass" style={{ marginBottom: "22px" }}>
           <h3>Receive address</h3>
           <div style={{ wordWrap: "break-word" }}>{receiveAddress}</div>
           <img
             src={`http://api.qrserver.com/v1/create-qr-code/?color=000000&bgcolor=FFFFFF&data=${receiveAddress}&qzone=1&margin=0&size=150x150&ecc=L`}
           />
-        </Card>
+        </div>
       </div>
     </div>
   );

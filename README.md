@@ -67,6 +67,8 @@ Given that you are using your command line tool and that your current directory 
 ## STEP 4: Secure your Firebase database
 - Configure your Firebase project to use Authentication > Google.
 - Log in once with your private Google Account in your local web app.
+
+### The easy way, hard code the user id
 - Go to your Google Firebase project, check Authentication/users, it should now contain a user. Check the user.uid, copy it.
 - Go to Realtime Database > Rules. Update the read/write rules so that only your user is allowed access.
 
@@ -78,6 +80,16 @@ Given that you are using your command line tool and that your current directory 
   }
 }
 ```
+
+### Fancy way using roles (custom claims as Google call them)
+- You should have logged in once to your web app by now.
+- Google Firebase project, check Authentication/users and verify that your user is there
+- We have a script that assign access rights to users
+- from ./server run this command
+```
+node addAdmin youremail@address.com
+```
+
 
 ## STEP 5: SERVER part, install dependencies
 
@@ -126,9 +138,12 @@ Create a script, if you are on Windows you can create a .bat file, that will tri
 Example of ticker.bat
 ```
 cd c:\temp\egowallet\server
-node c:\temp\egowallet\server\ticker
+node c:\temp\egowallet\server\ticker %s
 
 ```
+
+Note: the %s at the end represents the transaction id
+
 Check out this part of the video for full instructions
 https://youtu.be/FJC2VhW2edg?t=759
 

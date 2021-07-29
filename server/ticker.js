@@ -44,7 +44,8 @@ async function work() {
   const balanceRef = db.ref("balance");
   console.log("BALANCE", balance);
   await balanceRef.set(balance);
-
+ 
+  console.log("transaction id", txidArgument);
   //Set transactions
   if (txidArgument) {
     const transaction = await rpc("gettransaction", [txidArgument, true]);
