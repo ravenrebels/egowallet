@@ -2,21 +2,27 @@
   "name": "client",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "scripts": {
     "build": "parcel build src/index.html --public-url ./",
     "start": "parcel src/index.html --no-cache",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "parcel src/test/Test.html"
   },
   "keywords": [],
   "author": "Dick Henrik Larsson (https://github.com/dicklarsson)",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.14.8",
+    "@babel/preset-env": "^7.14.8",
     "@parcel/packager-raw-url": "^2.0.0-beta.2",
     "@parcel/transformer-webmanifest": "^2.0.0-beta.2",
+    "babel-jest": "^27.0.6",
     "firebaseui": "^4.8.0",
+    "jest": "^27.0.6",
     "parcel": "^2.0.0-beta.2",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-test-renderer": "^17.0.2"
   },
   "private": true,
   "dependencies": {

@@ -4,7 +4,7 @@ import { Routes } from "./Routes";
 import { Home } from "./Home";
 import { Pay } from "./Pay";
 
-import { Transactions } from "./Transactions";
+import { hasPendingTransactions, Transactions } from "./Transactions";
 import firebase from "firebase";
 import firebaseConfig from "./firebaseConfig.json";
 export type User = firebase.User;
@@ -142,6 +142,10 @@ function App({ user, logOut }) {
           >
             <i className="fas fa-list fa-2x" title="Transactions"></i>
           </button>
+
+          {hasPendingTransactions(transactions) && (
+            <div className="blink_me" style={{position: "absolute", fontSize: "50%"}}>PENDING</div>
+          )}
         </li>
 
         <li className="raven-rebels-ego-wallet__nav-item">
@@ -166,7 +170,7 @@ function App({ user, logOut }) {
           balance={balance}
           database={database}
           receiveAddress={receiveAddress}
-          okCallback={(transactionData) => { 
+          okCallback={(transactionData) => {
             setRoute(Routes.TRANSACTIONS);
           }}
         />
