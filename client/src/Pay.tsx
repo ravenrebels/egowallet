@@ -59,9 +59,7 @@ export function Pay({ balance, database, assets, receiveAddress, okCallback }) {
       <div className="padding-default glass">
         <h1>Pay / Transfer</h1>
         <div style={{ overflow: "hidden" }}>
-          <p className="padding-default">
-            <label>Available balance: {balance} </label>
-          </p>
+         
           <div style={{ marginBottom: "22px" }}>
             <label>
               Token/Asset

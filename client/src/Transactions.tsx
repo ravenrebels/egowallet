@@ -80,13 +80,10 @@ export function Transactions({ transactions }) {
               ` ${amount} ${details.assetName}`;
 
             const styles = { padding: "10px", marginBottom: "22px" };
-            if (isPending(trans) === true) {
-              styles["border"] = "2px solid red";
-            }
+
             return (
               <div className="glass" key={key} style={styles}>
-
-                {isPending(trans) && <h2 className="blink_me">Pending</h2>}
+                {isPending(trans) && <h2>Pending</h2>}
                 <div style={{ fontWeight: "bold" }}>
                   {date.toLocaleString()}
                 </div>

@@ -25,14 +25,14 @@ async function work() {
   }
 
   if (!user) {
-    console.error("user", email, " has not sign in to the app yet");
+    console.error("user", email, " has not signed in to the app yet");
     return;
   }
   if (user.customClaims && user.customClaims.admin === true) {
     console.info(email, "is already an admin");
     return true;
   }
-  console.log("Adding", email, "as admin");
+  console.log("Adding", email, "as admin. The user must sign out, sign in again for this to work");
   return admin.auth().setCustomUserClaims(user.uid, { admin: true });
 }
 

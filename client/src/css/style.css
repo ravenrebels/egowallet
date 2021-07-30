@@ -51,10 +51,8 @@ button {
   }
   #app {
     max-width: calc(100vw);
-    width: 600px;
-
+    width: 600px; 
     margin: auto;
-    margin-top: 30px;
   }
   .bird {
     background-position: top;

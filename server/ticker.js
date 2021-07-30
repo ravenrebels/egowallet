@@ -44,14 +44,31 @@ async function work() {
   const balanceRef = db.ref("balance");
   console.log("BALANCE", balance);
   await balanceRef.set(balance);
- 
+
   console.log("transaction id", txidArgument);
-  //Set transactions
-  if (txidArgument) {
-    const transaction = await rpc("gettransaction", [txidArgument, true]);
-    const transactionRef = db.ref("transactions/" + txidArgument);
+
+  async function updateTransactionById(id) {
+    const transaction = await rpc("gettransaction", [id, true]);
+    const transactionRef = db.ref("transactions/" + id);
     transaction.hex = null;
     await transactionRef.set(transaction);
+  }
+  //Set transactions
+  if (txidArgument) {
+    updateTransactionById(txidArgument);
+  }
+
+  //Set all transactions
+  if (!txidArgument) {
+    //listtransactions ( "account" count skip include_watchonly)
+    const account = "*";
+    const count = 200;
+    const args = [account, count]
+    const transactions = await rpc("listtransactions", args);
+    for (const transaction of transactions) {
+      updateTransactionById(transaction.txid);
+    }
+    console.log("Fetched", transactions.length, "transactions");
   }
 
   //Set unconfirmed balance
