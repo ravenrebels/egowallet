@@ -23,7 +23,7 @@ export function hasPendingTransactions(transactions: ITransaction) {
 }
 export function Transactions({ transactions }) {
   if (!transactions) {
-    return null;
+    return <h1 className="glass padding-default">You do not have any transactions yet</h1>;
   }
 
   const keys = Object.keys(transactions);
