@@ -144,7 +144,7 @@ function App({ user, logOut }) {
           </button>
 
           {hasPendingTransactions(transactions) && (
-            <div className="blink_me" style={{position: "absolute", fontSize: "50%"}}>PENDING</div>
+            <div className="blink_me" style={{position: "absolute", fontSize: "80%"}}>PENDING</div>
           )}
         </li>
 
