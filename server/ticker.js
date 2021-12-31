@@ -63,7 +63,7 @@ async function work() {
     //listtransactions ( "account" count skip include_watchonly)
     const account = "*";
     const count = 200;
-    const args = [account, count]
+    const args = [account, count];
     const transactions = await rpc("listtransactions", args);
     for (const transaction of transactions) {
       updateTransactionById(transaction.txid);
@@ -84,11 +84,14 @@ async function work() {
     //Fetch meta data about the asset
 
     const data = await rpc("getassetdata", [assetName]);
-    assets.push({
-      name: assetName,
-      balance: listmyassets[assetName],
-      ipfs_hash: data.ipfs_hash || null,
-    });
+
+    if (data) {
+      assets.push({
+        name: assetName,
+        balance: listmyassets[assetName],
+        ipfs_hash: data.ipfs_hash || null,
+      });
+    }
   }
   const ref = db.ref("assets");
   await ref.set(assets);
